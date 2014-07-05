@@ -45,7 +45,8 @@ add_action( 'customize_preview_init', 'site_logo_preview_enqueue' );
 
 function site_logo_theme_size() {
 	$args = get_theme_support( 'site-logo' );
-	$size = ( isset( $args[0]['size'] ) && in_array( $args[0]['size'], array( 'thumbnail', 'medium', 'large', 'full' ) ) ) ? $args[0]['size'] : 'thumbnail';
+	$registered = get_intermediate_image_sizes();
+	$size = ( isset( $args[0]['size'] ) && in_array( $args[0]['size'], $registered ) ) ? $args[0]['size'] : 'thumbnail';
 
 	return $size;
 }
