@@ -15,9 +15,11 @@
 				// If the source was smaller than the size required by the theme, give the biggest we've got.
 				if ( ! newVal.sizes[ $size ] )
 					$size = 'full';
-				$logo.attr( 'height', newVal.sizes[ $size ].height );
-				$logo.attr( 'width', newVal.sizes[ $size ].width );
-				$logo.attr( 'src', newVal.sizes[ $size ].url ).show();
+				$logo.attr({
+					height: newVal.sizes[ $size ].height,
+					width: newVal.sizes[ $size ].width,
+					src: newVal.sizes[ $size ].url
+				}).show();
 			} else {
 				$logo.hide();
 			};
