@@ -19,7 +19,7 @@ Add a logo to your WordPress site. Set it once, and all themes that support it w
 
 Activating the plugin and adding support in a theme allows the user to upload a logo through the Customizer (the uploader can be found in the Site Title & Tagline section). Display is determined entirely by the theme.
 
-The `add_theme_support()` declaration can take a `size` argument. The default is `thumbnail`, with other valid values being `medium`, `large`, and `full`. These are the only possible values on WordPress.com (we neuter sizes registered with `add_image_size()`, for some reason).
+The `add_theme_support()` declaration can take a `size` argument. The default is `thumbnail`, with other valid values being `medium`, `large`, `full`, and any additional sizes declared by `add_image_size`. If the selected logo is not big enough to have the requested size, 'full' will be used on output instead.
 
 == Changelog ==
 
