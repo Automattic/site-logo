@@ -15,15 +15,19 @@
  * @since 1.0
  */
 function get_site_logo( $show = 'url' ) {
-	$logo = get_option( 'site_logo', array(
-		'id'  => 0,
-		'url' => '',
-	) );
+	// Bail quietly if the theme hasn't declared support.
+	if ( ! current_theme_supports( 'site-logo' ) ) {
+		return;
+	}
 
-	if ( 0 == $logo['id'] ) {
+	$logo = get_option( 'site_logo' );
+
+	// Return false if no logo is set
+	if ( ! isset( $logo['id'] ) || 0 == $logo['id'] ) {
 		return false;
 	}
 
+	// Return the ID if specified, otherwise return the URL by default
 	if ( 'id' == $show ) {
 		return $logo['id'];
 	} else {
