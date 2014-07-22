@@ -21,10 +21,10 @@ function site_logo_activate() {
 	// Only activate if our theme declares support for site logos.
 	if ( current_theme_supports( 'site-logo' ) ) {
 		// Load hooks and functions.
-		require( __DIR__ . '/inc/functions.php' );
+		require( dirname( __FILE__ ) . '/inc/functions.php' );
 
 		// Load template tags.
-		require( __DIR__ . '/inc/template-tags.php' );
+		require( dirname( __FILE__ ) . '/inc/template-tags.php' );
 	}
 }
 add_action( 'init', 'site_logo_activate' );

@@ -16,7 +16,7 @@
  */
 function site_logo_customize_register( $wp_customize ) {
 	// Include our custom control.
-	require( __DIR__ . '/class-site-logo-control.php' );
+	require( dirname( __FILE__ ) . '/class-site-logo-control.php' );
 
 	// Add a setting to hide header text if the theme isn't supporting the feature itself
 	if ( ! current_theme_supports( 'custom-header' ) ) {
