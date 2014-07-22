@@ -81,7 +81,7 @@ function the_site_logo() {
 	}
 
 	// We have a logo. Logo is go.
-	printf( '<a href="%1$s" rel="home">%2$s</a>',
+	$html = sprintf( '<a href="%1$s" rel="home">%2$s</a>',
 		esc_url( home_url( '/' ) ),
 		wp_get_attachment_image(
 			$logo['id'],
@@ -93,4 +93,6 @@ function the_site_logo() {
 			)
 		)
 	);
+
+	echo apply_filters( 'the_site_logo', $html, $logo, $size );
 }
