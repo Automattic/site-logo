@@ -11,7 +11,7 @@
  * @uses get_option()
  * @uses esc_url_raw()
  * @uses set_url_scheme()
- * @return mixed The URL of our site logo (stored in the `site_logo` option)
+ * @return mixed The URL or ID of our site logo, false if not set
  * @since 1.0
  */
 function get_site_logo( $show = 'url' ) {
@@ -42,6 +42,10 @@ function get_site_logo( $show = 'url' ) {
  * @uses current_theme_supports()
  * @uses get_option()
  * @uses site_logo_theme_size()
+ * @uses site_logo_is_customize_preview()
+ * @uses esc_url()
+ * @uses home_url()
+ * @uses esc_attr()
  * @uses wp_get_attachment_image()
  * @since 1.0
  */

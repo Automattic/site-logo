@@ -1,7 +1,8 @@
 (function($){
-	var api = wp.customize;
-	var $logo = null;
-	var $size = null;
+	var api = wp.customize,
+		$logo = null,
+		$size = null;
+
 	api( 'site_logo', function( value ){
 		value.bind( function( newVal, oldVal ){
 			// Do we have any cached jQuery objects yet?
@@ -22,7 +23,7 @@
 				}).show();
 			} else {
 				$logo.hide();
-			};
+			}
 		});
-	})
+	});
 })(jQuery);

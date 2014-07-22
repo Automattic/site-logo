@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Custom logo uploader control for the Customizer.
+ *
+ * @since 1.0
+ */
 class Site_Logo_Image_Control extends WP_Customize_Control {
 
 	public function __construct( $wp_customize, $control_id, $args = array() ) {
