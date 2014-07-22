@@ -36,6 +36,17 @@ function get_site_logo( $show = 'url' ) {
 }
 
 /**
+ * Determine if a site logo is assigned or not.
+ *
+ * @uses get_option
+ * @return boolean True if there is an active logo, false otherwise
+ */
+function has_site_logo() {
+	$logo = get_option( 'site_logo' );
+	return ( isset( $logo['id'] ) && 0 !== $logo['id'] ) ? true : false;
+}
+
+/**
  * Output an <img> tag of the site logo, at the size specified
  * in the theme's add_theme_support() declaration.
  *
