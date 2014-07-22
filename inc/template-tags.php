@@ -58,9 +58,14 @@ function the_site_logo() {
 	$logo = get_option( 'site_logo' );
 	$size = site_logo_theme_size();
 
-	// Leave placeholder if no logo is currently set.
+	// Bail if no logo is set. Leave a placeholder if we're in the Customizer, though (needed for the live preview).
 	if ( ! isset( $logo['id'] ) || 0 == $logo['id'] ) {
-		echo '<img class="site-logo" data-size="' . $size . '" style="display:none;" />';
+		if ( site_logo_is_customize_preview() ) {
+			printf( '<a href="%1$s"><img class="site-logo" data-size="%2$s" style="display:none;" /></a>',
+				esc_url( home_url( '/' ) ),
+				esc_attr( $size )
+			);
+		}
 		return;
 	}
 
