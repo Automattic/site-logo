@@ -38,3 +38,9 @@
 #customize-control-site_logo .change {
 	float: right;
 }
+
+#customize-control-site_logo .customize-control-description {
+	display: block;
+	clear: both;
+	margin-bottom: 10px;
+}
