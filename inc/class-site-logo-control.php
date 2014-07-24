@@ -60,17 +60,20 @@ class Site_Logo_Image_Control extends WP_Customize_Control {
 		// We do this to allow the upload control to specify certain labels
 		$l10n = json_encode( $this->l10n );
 
+		// Control title
 		printf(
 			'<span class="customize-control-title" data-l10n="%s" data-mime="%s">%s</span>',
 			esc_attr( $l10n ),
 			esc_attr( $this->mime_type ),
 			esc_html( $this->label )
 		);
-		?>
-		<div class="current"></div>
-		<div class="actions"></div>
-		<?php if ( ! empty( $this->description ) ) : ?>
+
+		// Control description
+		if ( ! empty( $this->description ) ) : ?>
 			<span class="description customize-control-description"><?php echo $this->description; ?></span>
 		<?php endif; ?>
+
+		<div class="current"></div>
+		<div class="actions"></div>
 	<?php }
 }
