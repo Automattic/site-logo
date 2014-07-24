@@ -154,10 +154,8 @@ function site_logo_header_text_styles() {
 		return;
 	}
 
-	$header_text = get_theme_mod( 'site_logo_header_text' );
-
 	// Is Display Header Text unchecked? If so, we need to hide our header text.
-	if ( false !== $header_text && ! $header_text ) {
+	if ( ! get_theme_mod( 'site_logo_header_text', 1 ) ) {
 		$classes = site_logo_get_header_text_classes();
 		?>
 		<!-- Site Logo: hide header text -->
