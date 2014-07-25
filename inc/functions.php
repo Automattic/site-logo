@@ -198,3 +198,19 @@ function site_logo_get_header_text_classes() {
 
 	return $classes;
 }
+
+/**
+ * Adds custom classes to the array of body classes.
+ *
+ * @uses has_site_logo
+ * @return array Array of <body> classes
+ */
+function site_logo_body_classes( $classes ) {
+	// Add a class if a Site Logo is active
+	if ( has_site_logo() ) {
+		$classes[] = 'has-site-logo';
+	}
+
+	return $classes;
+}
+add_filter( 'body_class', 'site_logo_body_classes' );
