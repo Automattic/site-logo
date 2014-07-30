@@ -72,7 +72,7 @@ function the_site_logo() {
 	// Bail if no logo is set. Leave a placeholder if we're in the Customizer, though (needed for the live preview).
 	if ( ! isset( $logo['id'] ) || 0 == $logo['id'] ) {
 		if ( site_logo_is_customize_preview() ) {
-			printf( '<a href="%1$s"><img class="site-logo" data-size="%2$s" style="display:none;" /></a>',
+			printf( '<a href="%1$s" class="site-logo"><img data-size="%2$s" style="display:none;" /></a>',
 				esc_url( home_url( '/' ) ),
 				esc_attr( $size )
 			);
