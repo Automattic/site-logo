@@ -5,8 +5,9 @@
 
 	api( 'site_logo', function( value ){
 		value.bind( function( newVal, oldVal ){
-			$logo = $( '.site-logo' );
-			$size = $logo.attr( 'data-size' );
+			$anchor = $( '.site-logo-anchor' );
+			$logo   = $( '.site-logo' );
+			$size   = $logo.attr( 'data-size' );
 
 			// Let's update our preview logo.
 			if ( newVal && newVal.url ) {
@@ -18,9 +19,10 @@
 					height: newVal.sizes[ $size ].height,
 					width: newVal.sizes[ $size ].width,
 					src: newVal.sizes[ $size ].url
-				}).show();
+				});
+				$anchor.show();
 			} else {
-				$logo.hide();
+				$anchor.hide();
 			}
 		});
 	});
