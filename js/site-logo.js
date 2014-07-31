@@ -5,6 +5,7 @@
 
 	api( 'site_logo', function( value ){
 		value.bind( function( newVal, oldVal ){
+			$body   = $( 'body' );
 			$anchor = $( '.site-logo-anchor' );
 			$logo   = $( '.site-logo' );
 			$size   = $logo.attr( 'data-size' );
@@ -20,9 +21,12 @@
 					width: newVal.sizes[ $size ].width,
 					src: newVal.sizes[ $size ].url
 				});
+
 				$anchor.show();
+				$body.addClass( 'has-site-logo' );
 			} else {
 				$anchor.hide();
+				$body.removeClass( 'has-site-logo' );
 			}
 		});
 	});
