@@ -7,11 +7,31 @@
  */
 class Site_Logo {
 	/**
-	 * Our class constructor.
+	 * Stores our single instance.
+	 */
+	private static $instance;
+
+	/**
+	 * Return our instance, creating a new one if necessary.
 	 *
+	 * @return object Site_Logo
+	 */
+	public static function instance() {
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new Site_Logo;
+			self::$instance->register_hooks();
+		}
+
+		return self::$instance;
+	}
+
+	/**
+	 * Register our actions and filters.
+	 *
+	 * @uses add_action
 	 * @uses add_filter
 	 */
-	function __construct() {
+	function register_hooks() {
 		add_action( 'wp_head', array( $this, 'head_text_styles' ) );
 		add_action( 'customize_register', array( $this, 'customize_register' ) );
 		add_action( 'customize_preview_init', array( $this, 'preview_enqueue' ) );
@@ -219,4 +239,6 @@ class Site_Logo {
 
 }
 
-$site_logo = new Site_Logo;
+function site_logo() {
+	return Site_Logo::instance();
+}
