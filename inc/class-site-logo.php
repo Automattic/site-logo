@@ -235,9 +235,4 @@ class Site_Logo {
 	function sanitize_checkbox( $input ) {
 		return ( 1 == $input ) ? 1 : '';
 	}
-
-}
-
-function site_logo() {
-	return Site_Logo::instance();
 }

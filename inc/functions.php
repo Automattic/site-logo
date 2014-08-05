@@ -6,6 +6,15 @@
  */
 
 /**
+ * Allow themes and plugins to access Site_Logo methods.
+ *
+ * @return object Site_Logo
+ */
+function site_logo() {
+	return Site_Logo::instance();
+}
+
+/**
  * Retrieve the site logo URL or ID (URL by default). Pass in the string 'id' for ID.
  *
  * @uses get_option()
@@ -95,4 +104,20 @@ function the_site_logo() {
 	);
 
 	echo apply_filters( 'the_site_logo', $html, $logo, $size );
+}
+
+/**
+ * Whether the site is being previewed in the Customizer.
+ * Duplicate of core function until WP.com has merged 4.0.
+ *
+ * @since 4.0.0
+ *
+ * @global WP_Customize_Manager $wp_customize Customizer instance.
+ *
+ * @return bool True if the site is being previewed in the Customizer, false otherwise.
+ */
+function site_logo_is_customize_preview() {
+	global $wp_customize;
+
+	return is_a( $wp_customize, 'WP_Customize_Manager' ) && $wp_customize->is_preview();
 }
