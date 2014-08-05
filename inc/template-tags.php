@@ -67,7 +67,7 @@ function the_site_logo() {
 	}
 
 	$logo = get_option( 'site_logo' );
-	$size = site_logo_theme_size();
+	$size = site_logo()->theme_size();
 
 	// Bail if no logo is set. Leave a placeholder if we're in the Customizer, though (needed for the live preview).
 	if ( ! isset( $logo['id'] ) || 0 == $logo['id'] ) {

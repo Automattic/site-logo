@@ -54,7 +54,7 @@ class Site_Logo {
 		if ( ! current_theme_supports( 'custom-header' ) ) {
 			$wp_customize->add_setting( 'site_logo_header_text', array(
 				'default'           => 1,
-				'sanitize_callback' => 'site_logo_sanitize_checkbox',
+				'sanitize_callback' => array( $this, 'sanitize_checkbox' ),
 				'transport'         => 'postMessage',
 			) );
 
@@ -97,7 +97,7 @@ class Site_Logo {
 
 		// Don't bother passing in header text classes if the theme supports custom headers.
 		if ( ! current_theme_supports( 'custom-header' ) ) {
-			$classes = site_logo_get_header_text_classes();
+			$classes = $this->header_text_classes();
 			wp_enqueue_script( 'site-logo-header-text', plugins_url( '../js/site-logo-header-text.js', __FILE__ ), array( 'media-views' ), '', true );
 			wp_localize_script( 'site-logo-header-text', 'site_logo_header_classes', $classes );
 		}
