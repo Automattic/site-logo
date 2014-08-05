@@ -1,9 +1,8 @@
 <?php
 /**
- * Our site logo functions and hooks.
+ * Our Site Logo class for managing a site-wide logo through the Customizer.
  *
  * @package Site_Logo
- * @since 1.0
  */
 class Site_Logo {
 	/**
