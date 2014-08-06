@@ -2,7 +2,7 @@
 /**
  * Custom logo uploader control for the Customizer.
  *
- * @since 1.0
+ * @package Site_Logo
  */
 class Site_Logo_Image_Control extends WP_Customize_Control {
 	/**
@@ -11,6 +11,7 @@ class Site_Logo_Image_Control extends WP_Customize_Control {
 	 * @param object $wp_customize
 	 * @param string $control_id
 	 * @param array $args
+	 * @uses Site_Logo_Image_Control::l10n()
 	 */
 	public function __construct( $wp_customize, $control_id, $args = array() ) {
 		// declare these first so they can be overridden
@@ -86,6 +87,10 @@ class Site_Logo_Image_Control extends WP_Customize_Control {
 	/**
 	 * Display our custom control in the Customizer.
 	 *
+	 * @uses Site_Logo_Image_Control::l10n()
+	 * @uses Site_Logo_Image_Control::mime_type()
+	 * @uses Site_Logo_Image_Control::label()
+	 * @uses Site_Logo_Image_Control::description()
 	 * @uses esc_attr()
 	 * @uses esc_html()
 	 */

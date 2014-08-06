@@ -18,6 +18,7 @@ class Site_Logo {
 	/**
 	 * Return our instance, creating a new one if necessary.
 	 *
+	 * @uses Site_Logo::$instance
 	 * @return object Site_Logo
 	 */
 	public static function instance() {
@@ -41,6 +42,11 @@ class Site_Logo {
 	/**
 	 * Register our actions and filters.
 	 *
+	 * @uses Site_Logo::head_text_styles()
+	 * @uses Site_Logo::customize_register()
+	 * @uses Site_Logo::preview_enqueue()
+	 * @uses Site_Logo::body_classes()
+	 * @uses Site_Logo::media_manager_image_sizes()
 	 * @uses add_action
 	 * @uses add_filter
 	 */
@@ -56,9 +62,11 @@ class Site_Logo {
 	 * Add our logo uploader to the Customizer.
 	 *
 	 * @param object $wp_customize Customizer object.
-	 * @uses $wp_customize->add_setting
-	 * @uses $wp_customize->add_control
-	 * @since 1.0
+	 * @uses current_theme_supports()
+	 * @uses current_theme_supports()
+	 * @uses WP_Customize_Manager::add_setting()
+	 * @uses WP_Customize_Manager::add_control()
+	 * @uses Site_Logo::sanitize_checkbox()
 	 */
 	function customize_register( $wp_customize ) {
 		// Include our custom control.
@@ -104,7 +112,9 @@ class Site_Logo {
 	 *
 	 * @uses wp_enqueue_script()
 	 * @uses plugins_url()
-	 * @since 1.0
+	 * @uses current_theme_supports()
+	 * @uses Site_Logo::header_text_classes()
+	 * @uses wp_localize_script()
 	 */
 	function preview_enqueue() {
 		wp_enqueue_script( 'site-logo-preview', plugins_url( '../js/site-logo.js', __FILE__ ), array( 'media-views' ), '', true );
@@ -152,7 +162,7 @@ class Site_Logo {
 	 *
 	 * @uses current_theme_supports()
 	 * @uses get_theme_mod()
-	 * @uses site_logo_get_header_text_classes()
+	 * @uses Site_Logo::header_text_classes()
 	 * @uses esc_html()
 	 */
 	function head_text_styles() {
@@ -181,7 +191,6 @@ class Site_Logo {
 	 *
 	 * @uses get_theme_support()
 	 * @return string Size specified in add_theme_support declaration, or 'thumbnail' default
-	 * @since 1.0
 	 */
 	function theme_size() {
 		$valid_sizes = array( 'thumbnail', 'medium', 'large', 'full' );
@@ -202,6 +211,7 @@ class Site_Logo {
 	 * Make custom image sizes available to the media manager.
 	 *
 	 * @param array $sizes
+	 * @global array $_wp_additional_image_sizes
 	 * @return array All default and registered custom image sizes.
 	 */
 	function media_manager_image_sizes( $sizes ) {
@@ -219,7 +229,7 @@ class Site_Logo {
 	/**
 	 * Determine if a site logo is assigned or not.
 	 *
-	 * @uses get_option
+	 * @uses Site_Logo::$logo
 	 * @return boolean True if there is an active logo, false otherwise
 	 */
 	function has_site_logo() {
@@ -229,7 +239,7 @@ class Site_Logo {
 	/**
 	 * Adds custom classes to the array of body classes.
 	 *
-	 * @uses has_site_logo
+	 * @uses Site_Logo::has_site_logo()
 	 * @return array Array of <body> classes
 	 */
 	function body_classes( $classes ) {
@@ -255,6 +265,7 @@ class Site_Logo {
 /**
  * Allow themes and plugins to access Site_Logo methods and properties.
  *
+ * @uses Site_Logo::instance()
  * @return object Site_Logo
  */
 function site_logo() {
