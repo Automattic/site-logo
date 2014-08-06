@@ -50,7 +50,7 @@ class Site_Logo {
 	 * @uses add_action
 	 * @uses add_filter
 	 */
-	function register_hooks() {
+	public function register_hooks() {
 		add_action( 'wp_head', array( $this, 'head_text_styles' ) );
 		add_action( 'customize_register', array( $this, 'customize_register' ) );
 		add_action( 'customize_preview_init', array( $this, 'preview_enqueue' ) );
@@ -68,7 +68,7 @@ class Site_Logo {
 	 * @uses WP_Customize_Manager::add_control()
 	 * @uses Site_Logo::sanitize_checkbox()
 	 */
-	function customize_register( $wp_customize ) {
+	public function customize_register( $wp_customize ) {
 		// Include our custom control.
 		require( dirname( __FILE__ ) . '/class-site-logo-control.php' );
 
@@ -116,7 +116,7 @@ class Site_Logo {
 	 * @uses Site_Logo::header_text_classes()
 	 * @uses wp_localize_script()
 	 */
-	function preview_enqueue() {
+	public function preview_enqueue() {
 		wp_enqueue_script( 'site-logo-preview', plugins_url( '../js/site-logo.js', __FILE__ ), array( 'media-views' ), '', true );
 
 		// Don't bother passing in header text classes if the theme supports custom headers.
@@ -133,7 +133,7 @@ class Site_Logo {
 	 * @uses get_theme_support
 	 * @return string String of classes to hide
 	 */
-	function header_text_classes() {
+	public function header_text_classes() {
 		$args = get_theme_support( 'site-logo' );
 
 		if ( isset( $args[0][ 'header-text' ] ) ) {
@@ -165,7 +165,7 @@ class Site_Logo {
 	 * @uses Site_Logo::header_text_classes()
 	 * @uses esc_html()
 	 */
-	function head_text_styles() {
+	public function head_text_styles() {
 		// Bail if our theme supports custom headers.
 		if ( current_theme_supports( 'custom-header' ) ) {
 			return;
@@ -192,7 +192,7 @@ class Site_Logo {
 	 * @uses get_theme_support()
 	 * @return string Size specified in add_theme_support declaration, or 'thumbnail' default
 	 */
-	function theme_size() {
+	public function theme_size() {
 		$valid_sizes = array( 'thumbnail', 'medium', 'large', 'full' );
 
 		global $_wp_additional_image_sizes;
@@ -214,7 +214,7 @@ class Site_Logo {
 	 * @global array $_wp_additional_image_sizes
 	 * @return array All default and registered custom image sizes.
 	 */
-	function media_manager_image_sizes( $sizes ) {
+	public function media_manager_image_sizes( $sizes ) {
 		global $_wp_additional_image_sizes;
 
 		if ( isset( $_wp_additional_image_sizes ) ) {
@@ -232,7 +232,7 @@ class Site_Logo {
 	 * @uses Site_Logo::$logo
 	 * @return boolean True if there is an active logo, false otherwise
 	 */
-	function has_site_logo() {
+	public function has_site_logo() {
 		return ( isset( $this->logo['id'] ) && 0 !== $this->logo['id'] ) ? true : false;
 	}
 
@@ -242,7 +242,7 @@ class Site_Logo {
 	 * @uses Site_Logo::has_site_logo()
 	 * @return array Array of <body> classes
 	 */
-	function body_classes( $classes ) {
+	public function body_classes( $classes ) {
 		// Add a class if a Site Logo is active
 		if ( $this->has_site_logo() ) {
 			$classes[] = 'has-site-logo';
@@ -257,7 +257,7 @@ class Site_Logo {
 	 * @param $input
 	 * @return mixed 1 if checked, empty string if not checked.
 	 */
-	function sanitize_checkbox( $input ) {
+	public function sanitize_checkbox( $input ) {
 		return ( 1 == $input ) ? 1 : '';
 	}
 }
