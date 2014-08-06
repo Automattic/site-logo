@@ -5,9 +5,14 @@
  * @since 1.0
  */
 class Site_Logo_Image_Control extends WP_Customize_Control {
-
+	/**
+	 * Constructor for our custom control.
+	 *
+	 * @param object $wp_customize
+	 * @param string $control_id
+	 * @param array $args
+	 */
 	public function __construct( $wp_customize, $control_id, $args = array() ) {
-
 		// declare these first so they can be overridden
 		$this->l10n = array(
 			'upload' =>      __( 'Add logo' ),
@@ -21,31 +26,53 @@ class Site_Logo_Image_Control extends WP_Customize_Control {
 		parent::__construct( $wp_customize, $control_id, $args );
 	}
 
-	// this will be critical for your JS constructor
+	/**
+	 * This will be critical for our JS constructor.
+	 */
 	public $type = 'site_logo';
 
-	// this allows overriding of global labels by a specific control
+	/**
+	 * Allows overriding of global labels by a specific control.
+	 */
 	public $l10n = array();
 
-	// the type of files that should be allowed by the media modal
+	/**
+	 * The type of files that should be allowed by the media modal.
+	 */
 	public $mime_type = 'image';
 
-	// custom control descriptions
+	/**
+	 * Allow for custom control descriptions.
+	 */
 	public $description = '';
 
+	/**
+	 * Enqueue our media manager resources, scripts, and styles.
+	 *
+	 * @uses wp_enqueue_media()
+	 * @uses has_action()
+	 * @uses add_action()
+	 * @uses wp_enqueue_style()
+	 * @uses wp_enqueue_script()
+	 * @uses plugins_url()
+	 */
 	public function enqueue() {
-		// enqueues all needed media resources
+		// Enqueues all needed media resources.
 		wp_enqueue_media();
-		// Except for its templates - those are attached to hooks that don't exist
-		// in the Customizer. Just add once
 		if ( ! has_action( 'customize_controls_print_footer_scripts', 'wp_print_media_templates' ) )
 			add_action( 'customize_controls_print_footer_scripts', 'wp_print_media_templates' );
 
-		// Finally, ensure our control script and style are enqueued
+		// Enqueue our control script and styles.
 		wp_enqueue_style( 'site-logo-control', plugins_url( '../css/site-logo-control.css', __FILE__ ) );
 		wp_enqueue_script( 'site-logo-control', plugins_url( '../js/site-logo-control.js', __FILE__ ), array( 'media-views', 'customize-controls', 'underscore' ), '', true );
 	}
 
+	/**
+	 * Check if we have an active site logo.
+	 *
+	 * @uses get_option()
+	 * @return boolean
+	 */
 	public function has_site_logo() {
 		$logo = get_option( 'site_logo' );
 
@@ -56,6 +83,12 @@ class Site_Logo_Image_Control extends WP_Customize_Control {
 		}
 	}
 
+	/**
+	 * Display our custom control in the Customizer.
+	 *
+	 * @uses esc_attr()
+	 * @uses esc_html()
+	 */
 	public function render_content() {
 		// We do this to allow the upload control to specify certain labels
 		$l10n = json_encode( $this->l10n );
