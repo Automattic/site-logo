@@ -250,3 +250,17 @@ class Site_Logo {
 		return ( 1 == $input ) ? 1 : '';
 	}
 }
+
+/**
+ * Allow themes and plugins to access Site_Logo methods and properties.
+ *
+ * @return object Site_Logo
+ */
+function site_logo() {
+	return Site_Logo::instance();
+}
+
+/**
+ * One site logo, please.
+ */
+site_logo();

@@ -6,15 +6,6 @@
  */
 
 /**
- * Allow themes and plugins to access Site_Logo methods.
- *
- * @return object Site_Logo
- */
-function site_logo() {
-	return Site_Logo::instance();
-}
-
-/**
  * Retrieve the site logo URL or ID (URL by default). Pass in the string 'id' for ID.
  *
  * @uses get_option()
