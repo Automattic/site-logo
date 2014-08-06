@@ -11,6 +11,11 @@ class Site_Logo {
 	private static $instance;
 
 	/**
+	 * Stores our current logo settings.
+	 */
+	public $logo;
+
+	/**
 	 * Return our instance, creating a new one if necessary.
 	 *
 	 * @return object Site_Logo
@@ -22,6 +27,15 @@ class Site_Logo {
 		}
 
 		return self::$instance;
+	}
+
+	/**
+	 * Get our current logo settings stored in options.
+	 *
+	 * @uses get_option()
+	 */
+	private function __construct() {
+		$this->logo = get_option( 'site_logo', null );
 	}
 
 	/**
