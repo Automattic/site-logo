@@ -125,6 +125,7 @@ class Site_Logo {
 	 */
 	function header_text_classes() {
 		$args = get_theme_support( 'site-logo' );
+
 		if ( isset( $args[0][ 'header-text' ] ) ) {
 			// Use any classes defined in add_theme_support().
 			$classes = $args[0][ 'header-text' ];
