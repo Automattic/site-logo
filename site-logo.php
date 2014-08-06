@@ -17,8 +17,8 @@
  * @uses current_theme_supports()
  * @since 1.0
  */
-function site_logo_activate() {
-	// Only activate if our theme declares support for site logos.
+function site_logo_init() {
+	// Only load our code if our theme declares support for site logos.
 	if ( current_theme_supports( 'site-logo' ) ) {
 		// Load our class for namespacing.
 		require( dirname( __FILE__ ) . '/inc/class-site-logo.php' );
@@ -27,4 +27,4 @@ function site_logo_activate() {
 		require( dirname( __FILE__ ) . '/inc/functions.php' );
 	}
 }
-add_action( 'init', 'site_logo_activate' );
+add_action( 'init', 'site_logo_init' );
