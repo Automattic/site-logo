@@ -15,12 +15,7 @@
  * @since 1.0
  */
 function get_site_logo( $show = 'url' ) {
-	// Bail quietly if the theme hasn't declared support.
-	if ( ! current_theme_supports( 'site-logo' ) ) {
-		return;
-	}
-
-	$logo = get_option( 'site_logo' );
+	$logo = site_logo()->logo;
 
 	// Return false if no logo is set
 	if ( ! isset( $logo['id'] ) || 0 == $logo['id'] ) {
@@ -42,8 +37,7 @@ function get_site_logo( $show = 'url' ) {
  * @return boolean True if there is an active logo, false otherwise
  */
 function has_site_logo() {
-	$logo = get_option( 'site_logo' );
-	return ( isset( $logo['id'] ) && 0 !== $logo['id'] ) ? true : false;
+	return site_logo()->has_site_logo();
 }
 
 /**
@@ -61,16 +55,11 @@ function has_site_logo() {
  * @since 1.0
  */
 function the_site_logo() {
-	// Bail quietly if the theme hasn't declared support.
-	if ( ! current_theme_supports( 'site-logo' ) ) {
-		return;
-	}
-
-	$logo = get_option( 'site_logo' );
+	$logo = site_logo()->logo;
 	$size = site_logo()->theme_size();
 
 	// Bail if no logo is set. Leave a placeholder if we're in the Customizer, though (needed for the live preview).
-	if ( ! isset( $logo['id'] ) || 0 == $logo['id'] ) {
+	if ( ! has_site_logo() ) {
 		if ( site_logo_is_customize_preview() ) {
 			printf( '<a href="%1$s" class="site-logo-anchor" style="display:none;"><img class="site-logo" data-size="%2$s" /></a>',
 				esc_url( home_url( '/' ) ),
