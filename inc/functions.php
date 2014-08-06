@@ -1,6 +1,6 @@
 <?php
 /**
- * Template tags for using site logos.
+ * Functions and template tags for using site logos.
  *
  * @package Site_Logo
  */

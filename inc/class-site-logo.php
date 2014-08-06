@@ -1,6 +1,6 @@
 <?php
 /**
- * Our Site Logo class for managing a site-wide logo through the Customizer.
+ * Our Site Logo class for managing a theme-agnostic logo through the Customizer.
  *
  * @package Site_Logo
  */
