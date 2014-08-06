@@ -1,10 +1,4 @@
 # Site Logo
-Contributors: kwight, automattic
-Requires at least: 3.0.1
-Tested up to: 4.0alpha
-Stable tag: trunk
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Add a logo to your WordPress site. Set it once, and all themes that support it will display it automatically.
 
