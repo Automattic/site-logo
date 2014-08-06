@@ -222,7 +222,7 @@ class Site_Logo {
 	 * @return boolean True if there is an active logo, false otherwise
 	 */
 	function has_site_logo() {
-		return ( isset( $this->id ) && 0 !== $this->id ) ? true : false;
+		return ( isset( $this->logo['id'] ) && 0 !== $this->logo['id'] ) ? true : false;
 	}
 
 	/**
