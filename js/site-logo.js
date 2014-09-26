@@ -4,7 +4,7 @@
 
 	function cacheSelectors() {
 		$body   = $( 'body' );
-		$anchor = $( '.site-logo-anchor' );
+		$anchor = $( '.site-logo-link' );
 		$logo   = $( '.site-logo' );
 		size    = $logo.attr( 'data-size' );
 	}
