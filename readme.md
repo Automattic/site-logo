@@ -2,6 +2,8 @@
 
 Add a logo to your WordPress site. Set it once, and all themes that support it will display it automatically.
 
+*Note that this plugin is no longer maintained as of November 2014. Site Logo has been merged into [Jetpack](http://jetpack.me), and will be maintained from that codebase moving forward.*
+
 ## Installation
 
 1. Upload the `site-logo` folder to the `/wp-content/plugins/` directory, or check out the plugin from GitHub: `git clone git@github.com:Automattic/site-logo.git`.
